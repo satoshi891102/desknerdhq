@@ -7,8 +7,9 @@ const path = require('path');
 const { articles } = require('./articles');
 const { extraArticles } = require('./articles-extra');
 const { batch2Articles } = require('./articles-batch2');
+const { batch3Articles } = require('./articles-batch3');
 const { articleImages, categoryImages } = require('./images');
-const allArticles = [...articles, ...extraArticles, ...batch2Articles];
+const allArticles = [...articles, ...extraArticles, ...batch2Articles, ...batch3Articles];
 
 const SITE_NAME = 'DeskNerdHQ';
 const SITE_URL = 'https://desknerdhq.vercel.app';

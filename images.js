@@ -23,6 +23,14 @@ const articleImages = {
   'best-power-strip-desk-2026': 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&h=500&fit=crop&q=80',
   'home-office-lighting-guide': 'https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=800&h=500&fit=crop&q=80',
   'best-office-speakers-2026': 'https://images.unsplash.com/photo-1545454675-3531b543be5d?w=800&h=500&fit=crop',
+  'best-webcam-light-2026': 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=800&h=500&fit=crop',
+  'best-white-noise-machine-office-2026': 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&h=500&fit=crop&q=70',
+  'best-standing-desk-mat-2026': 'https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=800&h=500&fit=crop&q=70',
+  'best-wireless-charger-desk-2026': 'https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=800&h=500&fit=crop',
+  'best-desk-shelf-riser-2026': 'https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?w=800&h=500&fit=crop&q=70',
+  'herman-miller-aeron-vs-steelcase-leap': 'https://images.unsplash.com/photo-1580480055273-228ff5388ef8?w=800&h=500&fit=crop&q=70',
+  'best-desk-plants-low-light-2026': 'https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?w=800&h=500&fit=crop',
+  'best-external-ssd-2026': 'https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?w=800&h=500&fit=crop',
 };
 
 // Category hero images
