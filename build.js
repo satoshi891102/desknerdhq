@@ -6,6 +6,7 @@ const fs = require('fs');
 const path = require('path');
 const { articles } = require('./articles');
 const { extraArticles } = require('./articles-extra');
+const { articleImages, categoryImages } = require('./images');
 const allArticles = [...articles, ...extraArticles];
 
 const SITE_NAME = 'DeskNerdHQ';
@@ -45,7 +46,7 @@ function header(title, description, canonicalPath) {
 <body>
   <header class="site-header">
     <div class="header-inner">
-      <a href="/" class="site-logo"><span class="icon">🖥️</span> DeskNerdHQ</a>
+      <a href="/" class="site-logo"><span class="icon">⌨</span> DeskNerdHQ</a>
       <nav>
         <ul class="site-nav">
           <li><a href="/standing-desks/">Desks</a></li>
@@ -66,7 +67,7 @@ function footer() {
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a href="/" class="site-logo"><span class="icon">🖥️</span> DeskNerdHQ</a>
+          <a href="/" class="site-logo"><span class="icon">⌨</span> DeskNerdHQ</a>
           <p>Expert-tested home office gear reviews. We buy products, test them for months, and tell you what's actually worth your money.</p>
         </div>
         <div class="footer-col">
@@ -108,20 +109,25 @@ function ensureDir(dir) {
 
 function buildHomepage() {
   const latestArticles = allArticles.slice(0, 6);
-  const articleCards = latestArticles.map(a => `
+  const articleCards = latestArticles.map(a => {
+    const img = articleImages[a.slug];
+    const imgHtml = img
+      ? `<img src="${img}" alt="${a.title}" loading="lazy"><span class="card-score">⭐ ${a.score}</span>`
+      : `${a.icon}`;
+    return `
     <a href="/review/${a.slug}/" class="article-card">
-      <div class="card-image">${a.icon}</div>
+      <div class="card-image">${imgHtml}</div>
       <div class="card-body">
         <span class="card-category">${a.category}</span>
         <h3 class="card-title">${a.title}</h3>
         <p class="card-excerpt">${a.excerpt}</p>
         <div class="card-meta">
-          <span>⭐ ${a.score}/10</span>
           <span>${a.readTime}</span>
           <span>${a.updated || a.date}</span>
         </div>
       </div>
-    </a>`).join('\n');
+    </a>`;
+  }).join('\n');
 
   const categoryCards = categories.map(c => `
     <a href="/${c.slug}/" class="category-card">
@@ -138,6 +144,13 @@ function buildHomepage() {
       <a href="/standing-desks/" class="hero-cta">Browse Reviews →</a>
     </div>
   </section>
+
+  <div class="trust-bar">
+    <span>🔬 <strong>47+</strong> Products Tested</span>
+    <span>⏱️ <strong>3+ Months</strong> Per Product</span>
+    <span>💰 <strong>We Buy</strong> Everything We Test</span>
+    <span>🚫 <strong>Zero</strong> Sponsored Content</span>
+  </div>
 
   <section class="section">
     <div class="container">
@@ -201,6 +214,11 @@ function buildArticlePages() {
       }
     };
 
+    const heroImg = articleImages[article.slug];
+    const heroImgHtml = heroImg
+      ? `<div class="article-hero-img"><img src="${heroImg}" alt="${article.title}" loading="lazy"></div>`
+      : '';
+
     const html = `${header(article.title, article.metaDescription || article.excerpt, `/review/${article.slug}/`)}
   <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
 
@@ -216,6 +234,7 @@ function buildArticlePages() {
           <span>Updated ${article.updated || article.date}</span>
           <span>${article.readTime}</span>
         </div>
+        ${heroImgHtml}
       </div>
 
       <div class="article-content">
@@ -252,19 +271,24 @@ function buildCategoryPages() {
     const catArticles = allArticles.filter(a => a.categorySlug === cat.slug);
     const catArts = catArticles.length > 0 ? catArticles : allArticles.slice(0, 3);
 
-    const articleCards = catArts.map(a => `
+    const articleCards = catArts.map(a => {
+      const img = articleImages[a.slug];
+      const imgHtml = img
+        ? `<img src="${img}" alt="${a.title}" loading="lazy"><span class="card-score">⭐ ${a.score}</span>`
+        : `${a.icon}`;
+      return `
       <a href="/review/${a.slug}/" class="article-card">
-        <div class="card-image">${a.icon}</div>
+        <div class="card-image">${imgHtml}</div>
         <div class="card-body">
           <span class="card-category">${a.category}</span>
           <h3 class="card-title">${a.title}</h3>
           <p class="card-excerpt">${a.excerpt}</p>
           <div class="card-meta">
-            <span>⭐ ${a.score}/10</span>
             <span>${a.readTime}</span>
           </div>
         </div>
-      </a>`).join('\n');
+      </a>`;
+    }).join('\n');
 
     const html = `${header(`${cat.name} Reviews`, `${cat.desc} Expert-tested reviews from DeskNerdHQ.`, `/${cat.slug}/`)}
   <section class="section">
