@@ -5,6 +5,8 @@
 const fs = require('fs');
 const path = require('path');
 const { articles } = require('./articles');
+const { extraArticles } = require('./articles-extra');
+const allArticles = [...articles, ...extraArticles];
 
 const SITE_NAME = 'DeskNerdHQ';
 const SITE_URL = 'https://desknerdhq.vercel.app';
@@ -105,7 +107,7 @@ function ensureDir(dir) {
 // ============ PAGE GENERATORS ============
 
 function buildHomepage() {
-  const latestArticles = articles.slice(0, 6);
+  const latestArticles = allArticles.slice(0, 6);
   const articleCards = latestArticles.map(a => `
     <a href="/review/${a.slug}/" class="article-card">
       <div class="card-image">${a.icon}</div>
@@ -177,7 +179,7 @@ ${footer()}`;
 }
 
 function buildArticlePages() {
-  articles.forEach(article => {
+  allArticles.forEach(article => {
     const dir = `public/review/${article.slug}`;
     ensureDir(dir);
 
@@ -226,7 +228,7 @@ function buildArticlePages() {
     <aside class="sidebar">
       <div class="sidebar-widget">
         <h4>Popular Reviews</h4>
-        ${articles.slice(0, 5).map(a => `<a href="/review/${a.slug}/">${a.icon} ${a.title.split(':')[0]}</a>`).join('\n')}
+        ${allArticles.slice(0, 5).map(a => `<a href="/review/${a.slug}/">${a.icon} ${a.title.split(':')[0]}</a>`).join('\n')}
       </div>
       <div class="sidebar-widget">
         <h4>Categories</h4>
@@ -247,10 +249,10 @@ function buildCategoryPages() {
     const dir = `public/${cat.slug}`;
     ensureDir(dir);
 
-    const catArticles = articles.filter(a => a.categorySlug === cat.slug);
-    const allArticles = catArticles.length > 0 ? catArticles : articles.slice(0, 3);
+    const catArticles = allArticles.filter(a => a.categorySlug === cat.slug);
+    const catArts = catArticles.length > 0 ? catArticles : allArticles.slice(0, 3);
 
-    const articleCards = allArticles.map(a => `
+    const articleCards = catArts.map(a => `
       <a href="/review/${a.slug}/" class="article-card">
         <div class="card-image">${a.icon}</div>
         <div class="card-body">
@@ -418,7 +420,7 @@ function buildSitemap() {
     urls.push({ loc: `/${c.slug}/`, priority: '0.8', changefreq: 'weekly' });
   });
 
-  articles.forEach(a => {
+  allArticles.forEach(a => {
     urls.push({ loc: `/review/${a.slug}/`, priority: '0.9', changefreq: 'weekly' });
   });
 
@@ -481,5 +483,5 @@ const totalSize = (() => {
 console.log(`\n✅ Build complete!`);
 console.log(`📄 ${totalPages} HTML pages`);
 console.log(`📦 ${(totalSize / 1024).toFixed(0)}KB total`);
-console.log(`🌐 ${articles.length} review articles`);
+console.log(`🌐 ${allArticles.length} review articles`);
 console.log(`📂 ${categories.length} category pages`);
