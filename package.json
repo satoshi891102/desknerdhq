@@ -1,0 +1,9 @@
+{
+  "name": "desknerdhq",
+  "version": "1.0.0",
+  "description": "Expert-tested home office gear reviews",
+  "scripts": {
+    "build": "node build.js"
+  },
+  "private": true
+}
