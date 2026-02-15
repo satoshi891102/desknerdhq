@@ -45,6 +45,9 @@ function header(title, description, canonicalPath) {
   <meta name="twitter:description" content="${description}">
   <link rel="stylesheet" href="/style.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖥️</text></svg>">
+  <!-- Google Analytics — replace GA_MEASUREMENT_ID when ready -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','GA_MEASUREMENT_ID');</script>
 </head>
 <body>
   <div class="progress-bar" id="progressBar"></div>
