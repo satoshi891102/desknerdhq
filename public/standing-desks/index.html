@@ -18,6 +18,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖥️</text></svg>">
 </head>
 <body>
+  <div class="progress-bar" id="progressBar"></div>
   <header class="site-header">
     <div class="header-inner">
       <a href="/" class="site-logo"><span class="icon">⌨</span> DeskNerdHQ</a>
@@ -31,8 +32,20 @@
           <li><a href="/about/">About</a></li>
         </ul>
       </nav>
+      <div class="hamburger" onclick="document.getElementById('mobileMenu').classList.add('active')">
+        <span></span><span></span><span></span>
+      </div>
     </div>
   </header>
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="close-btn" onclick="this.parentElement.classList.remove('active')">✕</button>
+    <a href="/standing-desks/">Standing Desks</a>
+    <a href="/chairs/">Chairs</a>
+    <a href="/monitors/">Monitors</a>
+    <a href="/accessories/">Accessories</a>
+    <a href="/guides/">Guides</a>
+    <a href="/about/">About</a>
+  </div>
   <section class="section">
     <div class="container">
       <h1 class="section-title">🖥️ Standing Desks</h1>
@@ -47,6 +60,30 @@
           <p class="card-excerpt">We tested 12 standing desks over three months. These seven survived our wobble tests, motor endurance trials, and daily use.</p>
           <div class="card-meta">
             <span>18 min read</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="/review/best-standing-desk-converter-2026/" class="article-card">
+        <div class="card-image"><img src="https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=800&h=500&fit=crop&q=85" alt="Best Standing Desk Converters 2026 — 6 Tested on Real Desks" loading="lazy"><span class="card-score">⭐ 8.7</span></div>
+        <div class="card-body">
+          <span class="card-category">Standing Desks</span>
+          <h3 class="card-title">Best Standing Desk Converters 2026 — 6 Tested on Real Desks</h3>
+          <p class="card-excerpt">Don't want to replace your entire desk? These converters sit on top and give you sit-stand flexibility for under $400.</p>
+          <div class="card-meta">
+            <span>13 min read</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="/review/best-desk-for-dual-monitors-2026/" class="article-card">
+        <div class="card-image"><img src="https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=800&h=500&fit=crop&q=80" alt="Best Desks for Dual Monitor Setups 2026 — Width, Depth & Cable Tips" loading="lazy"><span class="card-score">⭐ 8.5</span></div>
+        <div class="card-body">
+          <span class="card-category">Standing Desks</span>
+          <h3 class="card-title">Best Desks for Dual Monitor Setups 2026 — Width, Depth & Cable Tips</h3>
+          <p class="card-excerpt">Two monitors need more desk than you think. We measured the minimum dimensions and found the best options.</p>
+          <div class="card-meta">
+            <span>11 min read</span>
           </div>
         </div>
       </a>
@@ -88,5 +125,12 @@
       </div>
     </div>
   </footer>
+  <script>
+  window.addEventListener('scroll', () => {
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    const p = (window.scrollY / h) * 100;
+    document.getElementById('progressBar').style.width = Math.min(p, 100) + '%';
+  });
+  </script>
 </body>
 </html>

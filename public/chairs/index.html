@@ -18,6 +18,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖥️</text></svg>">
 </head>
 <body>
+  <div class="progress-bar" id="progressBar"></div>
   <header class="site-header">
     <div class="header-inner">
       <a href="/" class="site-logo"><span class="icon">⌨</span> DeskNerdHQ</a>
@@ -31,8 +32,20 @@
           <li><a href="/about/">About</a></li>
         </ul>
       </nav>
+      <div class="hamburger" onclick="document.getElementById('mobileMenu').classList.add('active')">
+        <span></span><span></span><span></span>
+      </div>
     </div>
   </header>
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="close-btn" onclick="this.parentElement.classList.remove('active')">✕</button>
+    <a href="/standing-desks/">Standing Desks</a>
+    <a href="/chairs/">Chairs</a>
+    <a href="/monitors/">Monitors</a>
+    <a href="/accessories/">Accessories</a>
+    <a href="/guides/">Guides</a>
+    <a href="/about/">About</a>
+  </div>
   <section class="section">
     <div class="container">
       <h1 class="section-title">🪑 Chairs</h1>
@@ -59,6 +72,30 @@
           <p class="card-excerpt">The two most recommended office chairs, tested head-to-head over 6 months. One is better for warm climates. One is better for varied sitting positions. Here's the truth.</p>
           <div class="card-meta">
             <span>22 min read</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="/review/best-budget-office-chair-under-300/" class="article-card">
+        <div class="card-image"><img src="https://images.unsplash.com/photo-1580480055273-228ff5388ef8?w=800&h=500&fit=crop&q=85" alt="Best Office Chairs Under $300 in 2026 — 8 Tested" loading="lazy"><span class="card-score">⭐ 8.9</span></div>
+        <div class="card-body">
+          <span class="card-category">Chairs</span>
+          <h3 class="card-title">Best Office Chairs Under $300 in 2026 — 8 Tested</h3>
+          <p class="card-excerpt">You don't need to spend $1,500 on a Herman Miller. We found 8 chairs under $300 that your back will actually thank you for.</p>
+          <div class="card-meta">
+            <span>15 min read</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="/review/best-office-chair-for-back-pain-2026/" class="article-card">
+        <div class="card-image"><img src="https://images.unsplash.com/photo-1580480055273-228ff5388ef8?w=800&h=500&fit=crop&q=80" alt="Best Office Chairs for Back Pain 2026 — Recommended by Physical Therapists" loading="lazy"><span class="card-score">⭐ 9.1</span></div>
+        <div class="card-body">
+          <span class="card-category">Chairs</span>
+          <h3 class="card-title">Best Office Chairs for Back Pain 2026 — Recommended by Physical Therapists</h3>
+          <p class="card-excerpt">We consulted 3 physical therapists and tested 6 chairs specifically for lower back pain relief. Here's what actually works.</p>
+          <div class="card-meta">
+            <span>16 min read</span>
           </div>
         </div>
       </a>
@@ -100,5 +137,12 @@
       </div>
     </div>
   </footer>
+  <script>
+  window.addEventListener('scroll', () => {
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    const p = (window.scrollY / h) * 100;
+    document.getElementById('progressBar').style.width = Math.min(p, 100) + '%';
+  });
+  </script>
 </body>
 </html>

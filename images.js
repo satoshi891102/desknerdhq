@@ -31,6 +31,14 @@ const articleImages = {
   'herman-miller-aeron-vs-steelcase-leap': 'https://images.unsplash.com/photo-1580480055273-228ff5388ef8?w=800&h=500&fit=crop&q=70',
   'best-desk-plants-low-light-2026': 'https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?w=800&h=500&fit=crop',
   'best-external-ssd-2026': 'https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?w=800&h=500&fit=crop',
+  'best-standing-desk-converter-2026': 'https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=800&h=500&fit=crop&q=85',
+  'best-budget-office-chair-under-300': 'https://images.unsplash.com/photo-1580480055273-228ff5388ef8?w=800&h=500&fit=crop&q=85',
+  'best-4k-monitor-home-office-2026': 'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=800&h=500&fit=crop&q=85',
+  'best-desk-for-dual-monitors-2026': 'https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=800&h=500&fit=crop&q=80',
+  'best-wrist-rest-keyboard-2026': 'https://images.unsplash.com/photo-1595225476474-87563907a212?w=800&h=500&fit=crop&q=85',
+  'home-office-air-quality-guide': 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=500&fit=crop&q=85',
+  'best-desk-cable-management-kit-2026': 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&h=500&fit=crop&q=85',
+  'best-office-chair-for-back-pain-2026': 'https://images.unsplash.com/photo-1580480055273-228ff5388ef8?w=800&h=500&fit=crop&q=80',
 };
 
 // Category hero images

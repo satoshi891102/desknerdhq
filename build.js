@@ -8,8 +8,9 @@ const { articles } = require('./articles');
 const { extraArticles } = require('./articles-extra');
 const { batch2Articles } = require('./articles-batch2');
 const { batch3Articles } = require('./articles-batch3');
+const { batch4Articles } = require('./articles-batch4');
 const { articleImages, categoryImages } = require('./images');
-const allArticles = [...articles, ...extraArticles, ...batch2Articles, ...batch3Articles];
+const allArticles = [...articles, ...extraArticles, ...batch2Articles, ...batch3Articles, ...batch4Articles];
 
 const SITE_NAME = 'DeskNerdHQ';
 const SITE_URL = 'https://desknerdhq.vercel.app';
@@ -46,6 +47,7 @@ function header(title, description, canonicalPath) {
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖥️</text></svg>">
 </head>
 <body>
+  <div class="progress-bar" id="progressBar"></div>
   <header class="site-header">
     <div class="header-inner">
       <a href="/" class="site-logo"><span class="icon">⌨</span> DeskNerdHQ</a>
@@ -59,8 +61,20 @@ function header(title, description, canonicalPath) {
           <li><a href="/about/">About</a></li>
         </ul>
       </nav>
+      <div class="hamburger" onclick="document.getElementById('mobileMenu').classList.add('active')">
+        <span></span><span></span><span></span>
+      </div>
     </div>
-  </header>`;
+  </header>
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="close-btn" onclick="this.parentElement.classList.remove('active')">✕</button>
+    <a href="/standing-desks/">Standing Desks</a>
+    <a href="/chairs/">Chairs</a>
+    <a href="/monitors/">Monitors</a>
+    <a href="/accessories/">Accessories</a>
+    <a href="/guides/">Guides</a>
+    <a href="/about/">About</a>
+  </div>`;
 }
 
 function footer() {
@@ -99,6 +113,13 @@ function footer() {
       </div>
     </div>
   </footer>
+  <script>
+  window.addEventListener('scroll', () => {
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    const p = (window.scrollY / h) * 100;
+    document.getElementById('progressBar').style.width = Math.min(p, 100) + '%';
+  });
+  </script>
 </body>
 </html>`;
 }
@@ -241,6 +262,31 @@ function buildArticlePages() {
 
       <div class="article-content">
         ${article.content}
+      </div>
+
+      <div class="author-box">
+        <div class="author-avatar">DN</div>
+        <div class="author-info">
+          <h4>DeskNerdHQ Team</h4>
+          <p>Our team tests home office gear for months, not days. Every recommendation is based on real, extended testing — never sponsored content.</p>
+        </div>
+      </div>
+
+      <div class="related-articles">
+        <h3>You Might Also Like</h3>
+        <div class="related-grid">
+          ${allArticles.filter(a => a.slug !== article.slug).slice(0, 3).map(a => {
+            const rImg = articleImages[a.slug];
+            const imgStyle = rImg ? `background-image:url('${rImg}')` : `background:var(--bg-cool)`;
+            return `<a class="related-card" href="/review/${a.slug}/">
+              <div class="related-card-img" style="${imgStyle}"></div>
+              <div class="related-card-body">
+                <span>${a.category}</span>
+                <h4>${a.title.length > 55 ? a.title.substring(0, 52) + '...' : a.title}</h4>
+              </div>
+            </a>`;
+          }).join('\n')}
+        </div>
       </div>
 
       <div class="ad-slot ad-leaderboard">Ad Placement — Leaderboard</div>

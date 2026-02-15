@@ -18,6 +18,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖥️</text></svg>">
 </head>
 <body>
+  <div class="progress-bar" id="progressBar"></div>
   <header class="site-header">
     <div class="header-inner">
       <a href="/" class="site-logo"><span class="icon">⌨</span> DeskNerdHQ</a>
@@ -31,8 +32,20 @@
           <li><a href="/about/">About</a></li>
         </ul>
       </nav>
+      <div class="hamburger" onclick="document.getElementById('mobileMenu').classList.add('active')">
+        <span></span><span></span><span></span>
+      </div>
     </div>
   </header>
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="close-btn" onclick="this.parentElement.classList.remove('active')">✕</button>
+    <a href="/standing-desks/">Standing Desks</a>
+    <a href="/chairs/">Chairs</a>
+    <a href="/monitors/">Monitors</a>
+    <a href="/accessories/">Accessories</a>
+    <a href="/guides/">Guides</a>
+    <a href="/about/">About</a>
+  </div>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Review","name":"Best Power Strips for Desks 2026: 5 Tested for Safety and Design","description":"Best desk power strips with USB-C PD, surge protection, and clean design. Tested 5 options from Anker, Belkin, and more for home office setups.","datePublished":"2026-02-13","dateModified":"2026-02-13","author":{"@type":"Organization","name":"DeskNerdHQ"},"publisher":{"@type":"Organization","name":"DeskNerdHQ"},"reviewRating":{"@type":"Rating","ratingValue":"8.3","bestRating":10,"worstRating":1}}</script>
 
   <div class="with-sidebar">
@@ -83,6 +96,41 @@
         <p>The Anker 727 is the best choice for modern USB-C setups — it replaces your laptop charger. For traditional setups with many AC devices, the Belkin SurgePlus offers the best surge protection.</p>
       </div>
     
+      </div>
+
+      <div class="author-box">
+        <div class="author-avatar">DN</div>
+        <div class="author-info">
+          <h4>DeskNerdHQ Team</h4>
+          <p>Our team tests home office gear for months, not days. Every recommendation is based on real, extended testing — never sponsored content.</p>
+        </div>
+      </div>
+
+      <div class="related-articles">
+        <h3>You Might Also Like</h3>
+        <div class="related-grid">
+          <a class="related-card" href="/review/best-standing-desks-2026/">
+              <div class="related-card-img" style="background-image:url('https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=800&h=500&fit=crop')"></div>
+              <div class="related-card-body">
+                <span>Standing Desks</span>
+                <h4>The 7 Best Standing Desks in 2026 (100+ Hours Tested)</h4>
+              </div>
+            </a>
+<a class="related-card" href="/review/best-ergonomic-chairs-2026/">
+              <div class="related-card-img" style="background-image:url('https://images.unsplash.com/photo-1580480055273-228ff5388ef8?w=800&h=500&fit=crop')"></div>
+              <div class="related-card-body">
+                <span>Chairs</span>
+                <h4>Best Ergonomic Office Chairs 2026: We Sat in 15 to F...</h4>
+              </div>
+            </a>
+<a class="related-card" href="/review/best-monitors-home-office-2026/">
+              <div class="related-card-img" style="background-image:url('https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=800&h=500&fit=crop')"></div>
+              <div class="related-card-body">
+                <span>Monitors</span>
+                <h4>Best Monitors for Home Office 2026: From Budget Ultr...</h4>
+              </div>
+            </a>
+        </div>
       </div>
 
       <div class="ad-slot ad-leaderboard">Ad Placement — Leaderboard</div>
@@ -144,5 +192,12 @@
       </div>
     </div>
   </footer>
+  <script>
+  window.addEventListener('scroll', () => {
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    const p = (window.scrollY / h) * 100;
+    document.getElementById('progressBar').style.width = Math.min(p, 100) + '%';
+  });
+  </script>
 </body>
 </html>
